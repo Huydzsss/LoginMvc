@@ -18,7 +18,7 @@
 
 <div class="card p-4 shadow-lg text-center" style="width: 350px;">
     <h2 class="mb-4">Welcome, <%= username %>!</h2>
-
+    <h2 class="mb-4"><a  href="logout.jsp">Logout</a></h2>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
