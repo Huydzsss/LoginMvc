@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
             session.setMaxInactiveInterval(30 * 60);
             System.out.println("✅ User logged in: " + username);
-            response.sendRedirect(request.getContextPath() + "/welcome.jsp");
+            response.sendRedirect(request.getContextPath() + "/products");
         } else {
             System.out.println("❌ Login failed for user: " + username);
             response.sendRedirect(request.getContextPath() + "/login.jsp?error=true");
