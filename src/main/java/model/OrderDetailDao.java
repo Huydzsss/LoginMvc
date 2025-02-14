@@ -19,22 +19,21 @@ public class OrderDetailDao {
 
 
 
-    public List<OrderDetail> getOrderDetailsByOrderId(int orderId) {
+    public List<OrderDetail> getAllOrderDetails() {
         List<OrderDetail> orderDetails = new ArrayList<>();
-        String sql = "SELECT od.id, o.customer_id, o.order_date, o.total_price,\n" +
-                "       od.product_id, p.product_name AS product_name, od.price AS unit_price, od.quantity\n" +
-                "FROM orderdetail od\n" +
-                "JOIN orders o ON od.order_id = o.id  \n" +
-                "JOIN products p ON od.product_id = p.product_id\n" +
-                "WHERE od.order_id = ?";
+        String sql = "SELECT od.id, od.order_id, o.customer_id, o.order_date, o.total_price, " +
+                "od.product_id, p.product_name, od.price, od.quantity " +
+                "FROM orderdetail od " +
+                "JOIN orders o ON od.order_id = o.id " +
+                "JOIN products p ON od.product_id = p.product_id";
+
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, orderId);
-            ResultSet rs = stmt.executeQuery();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 OrderDetail detail = new OrderDetail(
                         rs.getInt("id"),
-                        orderId,
+                        rs.getInt("order_id"),  // ✅ Thêm order_id
                         rs.getInt("product_id"),
                         rs.getInt("quantity"),
                         rs.getDouble("price"),
@@ -50,5 +49,6 @@ public class OrderDetailDao {
         }
         return orderDetails;
     }
+
 
 }

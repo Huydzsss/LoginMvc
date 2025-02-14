@@ -7,7 +7,6 @@ public class OrderDetail {
     private int quantity;
     private double price;
 
-    // Thêm các thuộc tính từ bảng orders và product
     private int customerId;
     private String orderDate;
     private double totalPrice;

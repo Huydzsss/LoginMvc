@@ -21,32 +21,14 @@ public class OrderDetailServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<OrderDetail> orderDetails = orderDetailDao.getAllOrderDetails();
 
-        if ("view".equals(action)) {
-            try {
-                String orderIdParam = request.getParameter("orderId");
-                if (orderIdParam == null || orderIdParam.isEmpty()) {
-                    throw new IllegalArgumentException("Thiếu orderId");
-                }
+        System.out.println("Số lượng đơn hàng: " + orderDetails.size());
 
-                int orderId = Integer.parseInt(orderIdParam);
-                List<OrderDetail> orderDetails = orderDetailDao.getOrderDetailsByOrderId(orderId);
+        request.setAttribute("orderDetails", orderDetails);
 
-                if (orderDetails.isEmpty()) {
-                    request.setAttribute("message", "Không có chi tiết đơn hàng nào!");
-                }
-
-                request.setAttribute("orderDetails", orderDetails);
-                request.getRequestDispatcher("orderDetail.jsp").forward(request, response);
-            } catch (NumberFormatException e) {
-                request.setAttribute("error", "Mã đơn hàng không hợp lệ!");
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            } catch (Exception e) {
-                request.setAttribute("error", "Lỗi khi lấy dữ liệu đơn hàng: " + e.getMessage());
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-        }
+        request.getRequestDispatcher("OrderDetail.jsp").forward(request, response);
     }
 }

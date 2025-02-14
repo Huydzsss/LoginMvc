@@ -46,7 +46,7 @@
                     <td>${product.unitPrice} VNĐ</td>
                     <td>
                         <a href="edit.jsp?id=${product.productId}" class="btn btn-warning btn-sm">Sửa</a>
-                        <a href="OrderDetail.jsp?productId=${product.productId}" class="btn btn-info btn-sm">Xem Order</a>
+
 
                         <form action="products" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
                             <input type="hidden" name="action" value="delete">
@@ -62,6 +62,7 @@
 </table>
 
 <a href="add.jsp" class="btn btn-success mt-3">Thêm sản phẩm</a>
+<a href="OrderDetail" class="btn btn-info mt-3">Xem Order</a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
