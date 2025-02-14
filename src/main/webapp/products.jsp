@@ -46,6 +46,7 @@
                     <td>${product.unitPrice} VNĐ</td>
                     <td>
                         <a href="edit.jsp?id=${product.productId}" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="OrderDetail.jsp?productId=${product.productId}" class="btn btn-info btn-sm">Xem Order</a>
 
                         <form action="products" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
                             <input type="hidden" name="action" value="delete">
