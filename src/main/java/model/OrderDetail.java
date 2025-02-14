@@ -1,92 +1,40 @@
 package model;
 
-import java.util.Date;
-
 public class OrderDetail {
     private int id;
-    private int customerId;
-    private Date orderDate;
-    private double totalPrice;
+    private int orderId;
     private int productId;
-    private String productName;
-    private double unitPrice;
     private int quantity;
+    private double price;
 
-    public OrderDetail(int id, int customerId, Date orderDate, double totalPrice,
-                       int productId, String productName, double unitPrice, int quantity) {
+    // Thêm các thuộc tính từ bảng orders và product
+    private int customerId;
+    private String orderDate;
+    private double totalPrice;
+    private String productName;
+
+    public OrderDetail(int id, int orderId, int productId, int quantity, double price,
+                       int customerId, String orderDate, double totalPrice, String productName) {
         this.id = id;
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
         this.customerId = customerId;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
-        this.productId = productId;
-        this.productName = productName;
-        this.unitPrice = unitPrice;
-        this.quantity = quantity;
-    }
-
-    // Getters & Setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public double getUnitPrice() {
-        return unitPrice;
-    }
+    public int getId() { return id; }
+    public int getOrderId() { return orderId; }
+    public int getProductId() { return productId; }
+    public int getQuantity() { return quantity; }
+    public double getPrice() { return price; }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    // Getter mới
+    public int getCustomerId() { return customerId; }
+    public String getOrderDate() { return orderDate; }
+    public double getTotalPrice() { return totalPrice; }
+    public String getProductName() { return productName; }
 }
