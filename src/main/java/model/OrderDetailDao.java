@@ -21,11 +21,12 @@ public class OrderDetailDao {
         List<OrderDetail> orderDetails = new ArrayList<>();
         String sql = """
             SELECT od.id, o.customer_id, o.order_date, o.total_price,
-                   od.product_id, p.name AS product_name, od.price AS unit_price, od.quantity
-            FROM order_detail od
-            JOIN `order` o ON od.order_id = o.id
-            JOIN product p ON od.product_id = p.id
-            WHERE od.order_id = ?
+                   od.product_id, p.product_name AS product_name, od.price AS unit_price, od.quantity
+            FROM orderdetail od
+            JOIN orders o ON od.order_id = o.id\s
+            JOIN products p ON od.product_id = p.product_id
+            WHERE od.order_id = ?;
+            
         """;
 
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
